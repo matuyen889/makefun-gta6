@@ -1,8 +1,8 @@
 # CALETA DEL SOL 3D — Sun-Soaked Open-World Crime Epic
 
-[![makefun](https://make.fun/api/competitions/gta6-01/badge.svg)](https://make.fun/bounty/gta6-01)
-[![rank](https://make.fun/api/competitions/gta6-01/rank.svg)](https://make.fun/bounty/gta6-01)
-[![reward](https://make.fun/api/competitions/gta6-01/reward.svg)](https://make.fun/bounty/gta6-01)
+[![make.fun · gta6-01](https://make.fun/badge/gta6-01.svg)](https://make.fun/bounty/gta6-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-01)
+[![rank](https://make.fun/badge/gta6-01/matuyen889/makefun-gta6/rank.svg)](https://make.fun/bounty/gta6-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=gta6-01)
+[![reward](https://make.fun/badge/gta6-01/matuyen889/makefun-gta6/reward.svg)](https://make.fun/bounty/gta6-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-01)
 
 An original 3D sun-drenched coastal open-world crime action game built for desktop browsers (offline, zero external requests, pure ES modules + WebGL). Set across the fictional subtropical metropolis of **Caleta del Sol** across 4 vibrant districts: Malecón del Sol, Distrito Nocturno, Dársena Marina, and Muelle Pesquero.
 
@@ -71,7 +71,3 @@ http://localhost:8080
 ## License
 
 MIT License.
-
----
-*Caleta del Sol 3D — Official Make.fun Competition Build*
-
