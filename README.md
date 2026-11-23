@@ -71,3 +71,7 @@ http://localhost:8080
 ## License
 
 MIT License.
+
+---
+*Caleta del Sol 3D — Official Make.fun Competition Build*
+
