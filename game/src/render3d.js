@@ -35,7 +35,7 @@ export class Render3D {
     this.renderer.toneMappingExposure = 1.15;
 
     this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color(0xfb923c); // Warm sunset golden sky
+    this.scene.background = new THREE.Color(0xfb923c);
     this.scene.fog = new THREE.FogExp2(0xf97316, 0.0055);
 
     this.camera = new THREE.PerspectiveCamera(58, width / height, 0.5, 800);
@@ -45,23 +45,19 @@ export class Render3D {
   }
 
   initLights() {
-    // Ambient coastal sunset lighting
     const hemiLight = new THREE.HemisphereLight(0xfed7aa, 0x0369a1, 0.9);
     this.scene.add(hemiLight);
 
-    // Golden hour low-angle sun
     const sunLight = new THREE.DirectionalLight(0xf59e0b, 1.8);
     sunLight.position.set(120, 45, -150);
     this.scene.add(sunLight);
 
-    // Warm secondary rim fill
     const rimLight = new THREE.DirectionalLight(0xf43f5e, 0.7);
     rimLight.position.set(-90, 30, 80);
     this.scene.add(rimLight);
   }
 
   initEnvironment() {
-    // Ocean Plane (Left side)
     const oceanGeo = new THREE.PlaneGeometry(600, 800);
     const oceanMat = new THREE.MeshStandardMaterial({
       color: 0x0284c7,
@@ -73,7 +69,6 @@ export class Render3D {
     ocean.position.set(-160, -0.4, 0);
     this.scene.add(ocean);
 
-    // Beach Sand Plane
     const beachGeo = new THREE.PlaneGeometry(60, 800);
     const beachMat = new THREE.MeshStandardMaterial({
       color: 0xfde047,
@@ -85,7 +80,6 @@ export class Render3D {
     beach.position.set(15, -0.2, 0);
     this.scene.add(beach);
 
-    // Main Oceanfront Highway (Asphalt)
     const roadGeo = new THREE.PlaneGeometry(24, 800);
     const roadMat = new THREE.MeshStandardMaterial({
       color: 0x1e293b,
@@ -96,7 +90,6 @@ export class Render3D {
     road.position.set(0, 0, 0);
     this.scene.add(road);
 
-    // Double Yellow Centerline
     const lineGeo = new THREE.PlaneGeometry(0.35, 800);
     const lineMat = new THREE.MeshBasicMaterial({ color: 0xfacc15 });
     const line1 = new THREE.Mesh(lineGeo, lineMat);
@@ -109,7 +102,6 @@ export class Render3D {
     line2.position.set(0.3, 0.02, 0);
     this.scene.add(line2);
 
-    // Curbs & Sidewalks
     const sidewalkMat = new THREE.MeshStandardMaterial({ color: 0x94a3b8, roughness: 0.7 });
     const walkLeft = new THREE.Mesh(new THREE.BoxGeometry(3, 0.3, 800), sidewalkMat);
     walkLeft.position.set(-13.5, 0.15, 0);
@@ -119,7 +111,6 @@ export class Render3D {
     walkRight.position.set(14, 0.15, 0);
     this.scene.add(walkRight);
 
-    // Buildings & Palm Trees
     this.buildCitySkyline();
     this.buildPalmTrees();
   }
@@ -144,7 +135,6 @@ export class Render3D {
       building.position.set(x, height / 2, z);
       this.scene.add(building);
 
-      // Neon Marquee Sign on Front Facade
       const signGeo = new THREE.BoxGeometry(width * 0.75, 2.2, 0.6);
       const signMat = new THREE.MeshStandardMaterial({
         color: neonColors[i % neonColors.length],
@@ -170,14 +160,12 @@ export class Render3D {
       const group = new THREE.Group();
       group.position.set(x, 0, z);
 
-      // Curved Trunk
       const trunkGeo = new THREE.CylinderGeometry(0.3, 0.5, height, 8);
       const trunk = new THREE.Mesh(trunkGeo, trunkMat);
       trunk.position.y = height / 2;
       trunk.rotation.z = (i % 2 === 0 ? 0.08 : -0.08);
       group.add(trunk);
 
-      // Palm Fronds Crown
       for (let f = 0; f < 8; f++) {
         const frondGeo = new THREE.ConeGeometry(1.6, 4.5, 4);
         const frond = new THREE.Mesh(frondGeo, frondMat);
@@ -193,7 +181,6 @@ export class Render3D {
   createSportsCar(colorHex = 0xff6600) {
     const car = new THREE.Group();
 
-    // Chassis Body
     const bodyGeo = new THREE.BoxGeometry(2.4, 0.8, 5.2);
     const bodyMat = new THREE.MeshStandardMaterial({
       color: colorHex,
@@ -204,7 +191,6 @@ export class Render3D {
     body.position.y = 0.65;
     car.add(body);
 
-    // Aerodynamic Cabin / Windshield
     const cabinGeo = new THREE.BoxGeometry(1.9, 0.65, 2.6);
     const cabinMat = new THREE.MeshStandardMaterial({
       color: 0x0f172a,
@@ -215,14 +201,12 @@ export class Render3D {
     cabin.position.set(0, 1.25, -0.3);
     car.add(cabin);
 
-    // Rear Spoiler
     const wingGeo = new THREE.BoxGeometry(2.2, 0.1, 0.5);
     const wingMat = new THREE.MeshStandardMaterial({ color: 0x111111 });
     const wing = new THREE.Mesh(wingGeo, wingMat);
     wing.position.set(0, 1.3, 2.2);
     car.add(wing);
 
-    // Wheels
     const wheelMat = new THREE.MeshStandardMaterial({ color: 0x18181b, roughness: 0.8 });
     const wheelGeo = new THREE.CylinderGeometry(0.48, 0.48, 0.45, 16);
     const wheelPositions = [
@@ -238,7 +222,6 @@ export class Render3D {
       car.add(wheel);
     }
 
-    // Glowing Taillights
     const tailMat = new THREE.MeshBasicMaterial({ color: 0xef4444 });
     const tailL = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.15, 0.1), tailMat);
     tailL.position.set(-0.8, 0.7, 2.62);
@@ -254,7 +237,6 @@ export class Render3D {
   createPoliceCruiser() {
     const cruiser = new THREE.Group();
 
-    // Body (Black & White)
     const bodyGeo = new THREE.BoxGeometry(2.4, 0.9, 5.4);
     const bodyMat = new THREE.MeshStandardMaterial({ color: 0xffffff, metalness: 0.6, roughness: 0.3 });
     const body = new THREE.Mesh(bodyGeo, bodyMat);
@@ -267,14 +249,12 @@ export class Render3D {
     cabin.position.set(0, 1.4, -0.2);
     cruiser.add(cabin);
 
-    // Roof Police Lightbar
     const barGeo = new THREE.BoxGeometry(1.4, 0.22, 0.4);
     const barMat = new THREE.MeshStandardMaterial({ color: 0x334155 });
     const bar = new THREE.Mesh(barGeo, barMat);
     bar.position.set(0, 1.9, -0.2);
     cruiser.add(bar);
 
-    // Flashing Red & Blue Lens Point Lights
     const redLight = new THREE.PointLight(0xef4444, 3.5, 25);
     redLight.position.set(-0.5, 2.1, -0.2);
     cruiser.add(redLight);
@@ -285,7 +265,6 @@ export class Render3D {
     cruiser.add(blueLight);
     this.flashingLights.push(blueLight);
 
-    // Wheels
     const wheelMat = new THREE.MeshStandardMaterial({ color: 0x18181b });
     const wheelGeo = new THREE.CylinderGeometry(0.48, 0.48, 0.45, 16);
     for (const [x, y, z] of [[-1.25, 0.48, -1.6], [1.25, 0.48, -1.6], [-1.25, 0.48, 1.6], [1.25, 0.48, 1.6]]) {
@@ -301,28 +280,24 @@ export class Render3D {
   createPoliceHelicopter() {
     const heli = new THREE.Group();
 
-    // Fuselage
     const fuseGeo = new THREE.SphereGeometry(1.8, 16, 16);
     fuseGeo.scale(1.2, 1.0, 2.2);
     const fuseMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.3 });
     const fuselage = new THREE.Mesh(fuseGeo, fuseMat);
     heli.add(fuselage);
 
-    // Tail Boom
     const tailGeo = new THREE.CylinderGeometry(0.3, 0.5, 6, 8);
     const tail = new THREE.Mesh(tailGeo, fuseMat);
     tail.rotation.x = Math.PI / 2;
     tail.position.set(0, 0.3, 4.2);
     heli.add(tail);
 
-    // Main Rotor Blades
     const rotorGeo = new THREE.BoxGeometry(0.35, 0.08, 10);
     const rotorMat = new THREE.MeshBasicMaterial({ color: 0x1e293b });
     this.rotorBlade = new THREE.Mesh(rotorGeo, rotorMat);
     this.rotorBlade.position.set(0, 1.8, 0);
     heli.add(this.rotorBlade);
 
-    // Active Searchlight Beam pointing down to road
     const searchLight = new THREE.SpotLight(0xffffff, 5.0, 80, Math.PI / 6, 0.5);
     searchLight.position.set(0, -1.2, -1.0);
     searchLight.target.position.set(0, -25, -15);
@@ -336,12 +311,10 @@ export class Render3D {
   setupActionChaseScene() {
     this.init();
 
-    // 1. Player Sports Car (Tormenta GT, orange)
     this.playerCar = this.createSportsCar(0xff6600);
     this.playerCar.position.set(2.2, 0, 0);
     this.scene.add(this.playerCar);
 
-    // 2. MSPD Police Cruisers in Hot Pursuit
     const cop1 = this.createPoliceCruiser();
     cop1.position.set(-4.0, 0, 18);
     this.scene.add(cop1);
@@ -352,23 +325,20 @@ export class Render3D {
     this.scene.add(cop2);
     this.policeCars.push(cop2);
 
-    // 3. CONDOR-1 Police Helicopter Overhead
     this.policeHelicopter = this.createPoliceHelicopter();
     this.policeHelicopter.position.set(1.5, 19, -8);
-    this.policeHelicopter.rotation.x = 0.15; // Angled forward
+    this.policeHelicopter.rotation.x = 0.15;
     this.scene.add(this.policeHelicopter);
 
-    // 4. Camera: Cinematic Chase View behind player's car
     this.camera.position.set(2.2, 3.4, -9.2);
     this.camera.lookAt(2.2, 1.4, 25);
   }
 
   setupShootoutScene() {
     this.init();
-    this.scene.background = new THREE.Color(0x0f172a); // Night twilight
+    this.scene.background = new THREE.Color(0x0f172a);
     this.scene.fog = new THREE.FogExp2(0x1e1b4b, 0.008);
 
-    // Night market stalls with fabric awnings
     const stallColors = [0xef4444, 0x3b82f6, 0xf59e0b, 0x10b981, 0xec4899];
     for (let i = 0; i < 16; i++) {
       const z = -40 + (i % 8) * 12;
@@ -376,17 +346,14 @@ export class Render3D {
       const stall = new THREE.Group();
       stall.position.set(x, 0, z);
 
-      // Wooden Counter
       const counter = new THREE.Mesh(new THREE.BoxGeometry(3.5, 1.1, 2.2), new THREE.MeshStandardMaterial({ color: 0x78350f }));
       counter.position.y = 0.55;
       stall.add(counter);
 
-      // Colorful Awning
       const awning = new THREE.Mesh(new THREE.BoxGeometry(3.8, 0.2, 2.6), new THREE.MeshStandardMaterial({ color: stallColors[i % stallColors.length] }));
       awning.position.y = 2.4;
       stall.add(awning);
 
-      // Hanging Lantern Glow
       const lantern = new THREE.PointLight(stallColors[i % stallColors.length], 2.2, 14);
       lantern.position.y = 2.2;
       stall.add(lantern);
@@ -394,38 +361,31 @@ export class Render3D {
       this.scene.add(stall);
     }
 
-    // Third-Person Player Character with Aimed Weapon
     const playerChar = new THREE.Group();
     playerChar.position.set(0, 0, 0);
 
-    // Pants / Legs
     const legs = new THREE.Mesh(new THREE.BoxGeometry(0.6, 1.0, 0.4), new THREE.MeshStandardMaterial({ color: 0x1e293b }));
     legs.position.y = 0.5;
     playerChar.add(legs);
 
-    // Jacket (Crimson Red)
     const torso = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.9, 0.5), new THREE.MeshStandardMaterial({ color: 0xd97706 }));
     torso.position.y = 1.35;
     playerChar.add(torso);
 
-    // Head
     const head = new THREE.Mesh(new THREE.SphereGeometry(0.28, 12, 12), new THREE.MeshStandardMaterial({ color: 0xd4a373 }));
     head.position.y = 2.0;
     playerChar.add(head);
 
-    // Aimed Weapon (AR-15 with muzzle flash)
     const gun = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.18, 1.1), new THREE.MeshStandardMaterial({ color: 0x09090b }));
     gun.position.set(0.35, 1.5, 0.7);
     playerChar.add(gun);
 
-    // Muzzle Flash
     const flash = new THREE.PointLight(0xfacc15, 6.0, 12);
     flash.position.set(0.35, 1.5, 1.4);
     playerChar.add(flash);
 
     this.scene.add(playerChar);
 
-    // Downed Thug (Ragdoll pose on ground)
     const fallen = new THREE.Group();
     fallen.position.set(-1.8, 0.15, 12);
     fallen.rotation.y = Math.PI / 4;
@@ -433,18 +393,15 @@ export class Render3D {
     fallen.add(fallenBody);
     this.scene.add(fallen);
 
-    // Camera: Close Third-Person Aiming over the shoulder
     this.camera.position.set(0.6, 1.9, -2.8);
     this.camera.lookAt(0.2, 1.5, 20);
   }
 
   setupSkylineTitleScene() {
     this.init();
-    // Dramatic Sunset Vista
     this.scene.background = new THREE.Color(0xf97316);
     this.scene.fog = new THREE.FogExp2(0xfb923c, 0.0035);
 
-    // Low Sun
     const sun = new THREE.Mesh(
       new THREE.SphereGeometry(18, 24, 24),
       new THREE.MeshBasicMaterial({ color: 0xfef08a })
@@ -452,7 +409,6 @@ export class Render3D {
     sun.position.set(80, 25, 280);
     this.scene.add(sun);
 
-    // Camera: High panoramic drone shot overlooking beachfront
     this.camera.position.set(-45, 28, -60);
     this.camera.lookAt(35, 12, 120);
   }
