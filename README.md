@@ -1,8 +1,8 @@
 # Caleta del Sol 3D — GTA 6 Style Open-World Game (v1.0.4)
 
-[![make.fun](https://make.fun/api/competitions/gta6-01/badge.svg)](https://make.fun/bounty/gta6-01)
-[![gta6-01 status](https://make.fun/api/competitions/gta6-01/badges/status.svg)](https://make.fun/bounty/gta6-01)
-[![gta6-01 rank](https://make.fun/api/competitions/gta6-01/badges/rank.svg)](https://make.fun/bounty/gta6-01)
+[![make.fun · gta6-01](https://make.fun/badge/gta6-01.svg)](https://make.fun/bounty/gta6-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-01)
+[![rank](https://make.fun/badge/gta6-01/matuyen889/makefun-gta6/rank.svg)](https://make.fun/bounty/gta6-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=gta6-01)
+[![reward](https://make.fun/badge/gta6-01/matuyen889/makefun-gta6/reward.svg)](https://make.fun/bounty/gta6-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-01)
 
 Caleta del Sol 3D is a complete, original browser-based 3D open-world crime action game built for make.fun's `gta6-01` competition. Engineered with pure client-side WebGL (Three.js) and 60 FPS Canvas HUD overlay.
 
